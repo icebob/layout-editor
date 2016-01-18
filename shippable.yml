@@ -1,0 +1,23 @@
+# file: shippable.yml
+
+# language setting
+language: node_js
+
+# version numbers, testing against some versions of node and iojs
+node_js:
+  - "0.12"
+  - "4.2"
+
+# Create directories for test and coverage reports
+before_script:
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
+
+# Running test
+script:
+  - npm test
+
+# Copy coverage & test report to shippable folder
+after_script:
+  - cp ./coverage/coverage.xml ./shippable/codecoverage/
+  - cp ./test_reports/report.xml ./shippable/testresults/
