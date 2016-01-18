@@ -1,0 +1,13 @@
+/**
+ * layout-editor - Layout Editor in browser
+ * @version v1.0.0
+ * @link https://github.com/icebob/layout-editor
+ * @license MIT
+ * Copyright (c) 2016 Icebob
+ * 
+ * 
+ * Build Date: Mon Jan 18 2016 15:33:25 GMT+0100 (Közép-európai téli idő )
+ * 
+ */
+.layout-editor{position:absolute;left:0;right:0;top:0;bottom:0;-moz-user-select:-moz-none;-ms-user-select:none;-webkit-user-select:none;user-select:none;overflow:hidden}.layout-editor.grid{background-color:transparent;background-image:linear-gradient(0deg, rgba(0,0,0,0) 24%,rgba(255,255,255,0.1) 25%,rgba(255,255,255,0.1) 26%,rgba(0,0,0,0) 27%,rgba(0,0,0,0) 74%,rgba(255,255,255,0.1) 75%,rgba(255,255,255,0.1) 76%,rgba(0,0,0,0) 77%,rgba(0,0,0,0)),linear-gradient(90deg, rgba(0,0,0,0) 24%,rgba(255,255,255,0.1) 25%,rgba(255,255,255,0.1) 26%,rgba(0,0,0,0) 27%,rgba(0,0,0,0) 74%,rgba(255,255,255,0.1) 75%,rgba(255,255,255,0.1) 76%,rgba(0,0,0,0) 77%,rgba(0,0,0,0));background-size:40px 40px;background-position:0 0}.layout-editor .layout-object{position:absolute;border:1px dashed gray;background-color:rgba(128,128,128,0.2)}.layout-editor .layout-object.selected{border:1px solid gray;background-color:rgba(128,128,128,0.5)}.layout-editor .layout-object span{position:absolute;display:none;bottom:0;left:0;right:0;text-align:center;background-color:rgba(255,255,255,0.2);padding:2px}.layout-editor .layout-object.moving>span,.layout-editor .layout-object.resizing>span{display:block}.layout-editor .layout-object .resize-helper{display:none;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;position:absolute;width:8px;height:8px;border:2px solid #d3d3d3;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px;background-color:Grey}.layout-editor .layout-object .resize-helper.rh-n{left:50%;top:-4px;margin-left:-4px;cursor:n-resize}.layout-editor .layout-object .resize-helper.rh-s{left:50%;bottom:-4px;margin-left:-4px;cursor:s-resize}.layout-editor .layout-object .resize-helper.rh-e{right:-4px;top:50%;margin-top:-4px;cursor:e-resize}.layout-editor .layout-object .resize-helper.rh-w{left:-4px;top:50%;margin-top:-4px;cursor:w-resize}.layout-editor .layout-object .resize-helper.rh-ne{right:-4px;top:-4px;cursor:ne-resize}.layout-editor .layout-object .resize-helper.rh-nw{left:-4px;top:-4px;cursor:nw-resize}.layout-editor .layout-object .resize-helper.rh-se{right:-4px;bottom:-4px;cursor:se-resize}.layout-editor .layout-object .resize-helper.rh-sw{left:-4px;bottom:-4px;cursor:sw-resize}.layout-editor .layout-object.selected>.resize-helper{display:block}
+/*# sourceMappingURL=layout-editor.css.map */

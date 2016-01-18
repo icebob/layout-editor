@@ -10,7 +10,6 @@ var reload          = browserSync.reload;
 var browserify 		= require('browserify');
 var source 			= require('vinyl-source-stream');
 var buffer 			= require('vinyl-buffer');
-var glob 			= require('glob');
 
 var gulp            = require('gulp');
 var $ 				= require('gulp-load-plugins')({
@@ -34,6 +33,10 @@ var banner = ['/**',
 // Browser-sync task
 gulp.task('browser-sync', function() {
 	browserSync({
+		port: 3333,
+		ui: {
+			port: 3334
+		},
 		server: {
 			baseDir: "./demo",
 			routes: {
@@ -166,7 +169,7 @@ gulp.task('dev', ['jade', 'sass', 'sass:demo', 'coffee', 'coffee:demo', 'build',
 		gulp.start('coffee:demo');
 	});
 	$.watch('src/scss/*.scss', function() {
-		gulp.start('sass');
+		gulp.start('build');
 	});
 	$.watch('demo/*.scss', function() {
 		gulp.start('sass:demo');
@@ -233,13 +236,13 @@ gulp.task('build', ["sass:min", "coffee"], function () {
 
 	// set up the browserify instance on a task basis
 	var b = browserify({
-		entries: './src/js/propertiesJS.js',
+		entries: './src/js/layout-editor.js',
 		debug: false,
 		external: ['jquery']
 	});
 
  	return b.bundle()
-		.pipe(source('propertiesJS.js'))
+		.pipe(source('layout-editor.js'))
 		.pipe(buffer())
 		.pipe($.header(banner, { pkg : pkg } ))
 		.pipe(gulp.dest('./dist'))
@@ -248,7 +251,7 @@ gulp.task('build', ["sass:min", "coffee"], function () {
 			.pipe($.uglify())
 			.on('error', $.util.log)
 		.pipe($.sourcemaps.write('./'))
-		.pipe($.rename('propertiesJS.min.js'))
+		.pipe($.rename('layout-editor.min.js'))
 		.pipe($.header(banner, { pkg : pkg } ))
 		.pipe(gulp.dest('./dist'));
 });
@@ -285,7 +288,6 @@ gulp.task('release', function (done) {
         'npm publish'
     ].join('\n');
 
-    console.log("1");
     exec(execute, function( error, stdout, stderr) 
 	{
 		console.log(stdout);

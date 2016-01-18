@@ -1,0 +1,79 @@
+@import "compass/css3";
+
+
+.layout-editor {
+	position: absolute;
+	left: 0; right: 0; top: 0; bottom: 0;	
+	@include user-select(none);
+	overflow: hidden;
+
+	&.grid {	
+		background-color: transparent;
+		background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .1) 25%, rgba(255, 255, 255, .1) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .1) 75%, rgba(255, 255, 255, .1) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .1) 25%, rgba(255, 255, 255, .1) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .1) 75%, rgba(255, 255, 255, .1) 76%, transparent 77%, transparent);
+		background-size: 40px 40px;	
+		background-position: 0 0;
+	}
+
+	.layout-object {
+		position: absolute;
+		
+		$c: gray;
+		border: 1px dashed $c;
+		background-color: rgba($c, 0.2);
+
+		&.selected {
+			border: 1px solid $c;
+			background-color: rgba($c, 0.5);			
+		}
+		
+		span {
+			position: absolute;
+			display: none;
+			bottom: 0;
+			left: 0; right: 0;
+			text-align: center;
+			
+			background-color: rgba(White, 0.2);
+			padding: 2px;
+		}
+		
+		&.moving > span, &.resizing > span {
+			display: block;
+		}
+		
+		.resize-helper {
+			display: none;
+			@include box-sizing(border-box);  
+			$s: 8px;
+			$b: 2px;
+			$c: Grey;
+			position: absolute;
+			width: $s;
+			height: $s;
+			border: $b solid LightGrey;
+			@include border-radius($s);
+			background-color: $c;
+
+			$offset: -($s / 2);
+
+			&.rh-n { left: 50%;			top: $offset;		margin-left: $offset; 	cursor: n-resize; }
+			&.rh-s { left: 50%;			bottom: $offset; 	margin-left: $offset; 	cursor: s-resize; }
+			&.rh-e { right: $offset;	top: 50%; 			margin-top: $offset;	cursor: e-resize; }
+			&.rh-w { left: $offset;		top: 50%;			margin-top: $offset;	cursor: w-resize; }
+
+			&.rh-ne { right: $offset; 	top: $offset;		cursor: ne-resize; }
+			&.rh-nw { left: $offset; 	top: $offset;		cursor: nw-resize; }
+			&.rh-se { right: $offset; 	bottom: $offset;	cursor: se-resize; }
+			&.rh-sw { left: $offset; 	bottom: $offset;	cursor: sw-resize; }
+		}
+		
+		&.selected {
+			> .resize-helper {
+				display: block;
+			}
+		}
+
+	} // .layout-object	
+
+} // .layout-editor
+
