@@ -2,9 +2,15 @@
   "name": "layout-editor",
   "version": "1.0.0",
   "description": "Layout Editor in browser",
-  "main": "index.js",
+  "main": "dist/propertiesJS.js",
+  "homepage": "https://github.com/icebob/layout-editor",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm install && gulp",
+    "start": "gulp dev",
+    "test": "gulp test"
   },
   "keywords": [
     "layout",
@@ -12,6 +18,10 @@
   ],
   "author": "Icebob <mereg.norbert@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/icebob/layout-editor.git"
+  },  
   "devDependencies": {
     "browser-sync": "^2.6.4",
     "browserify": "^9.0.8",
