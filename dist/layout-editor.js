@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Icebob
  * 
  * 
- * Build Date: Mon Jan 18 2016 15:33:25 GMT+0100 (Közép-európai téli idő )
+ * Build Date: Tue Jan 19 2016 15:06:56 GMT+0100 (Közép-európai téli idő )
  * 
  */
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
@@ -28,6 +28,9 @@
     function Editor(c, layout1, options) {
       this.layout = layout1;
       this.options = options;
+      this.saveLayout = bind(this.saveLayout, this);
+      this.loadLayout = bind(this.loadLayout, this);
+      this.clearLayout = bind(this.clearLayout, this);
       this.onPointerUp = bind(this.onPointerUp, this);
       this.onPointerMove = bind(this.onPointerMove, this);
       this.onPointerDown = bind(this.onPointerDown, this);
@@ -184,6 +187,35 @@
           })(this));
         }
       }
+    };
+
+    Editor.prototype.clearLayout = function() {
+      var j, len, obj, ref;
+      ref = this.objects;
+      for (j = 0, len = ref.length; j < len; j++) {
+        obj = ref[j];
+        obj.destroy();
+      }
+      this.objects = [];
+      return this.selected = [];
+    };
+
+    Editor.prototype.loadLayout = function() {
+      return this.clearLayout();
+    };
+
+    Editor.prototype.saveLayout = function() {
+      var obj;
+      return (function() {
+        var j, len, ref, results;
+        ref = this.objects;
+        results = [];
+        for (j = 0, len = ref.length; j < len; j++) {
+          obj = ref[j];
+          results.push($.extend({}, obj));
+        }
+        return results;
+      }).call(this);
     };
 
     return Editor;
@@ -22763,6 +22795,12 @@ return jQuery;
       this.parentDom = this.parent ? this.parent.dom : this.editor.dom;
       this.render();
     }
+
+    LayoutObject.prototype.destroy = function() {
+      if (this.dom != null) {
+        return this.dom.remove();
+      }
+    };
 
     LayoutObject.prototype.setCss = function() {
       return this.dom.css({

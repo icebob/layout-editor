@@ -21,6 +21,11 @@ module.exports = class LayoutObject
 		@parentDom = if @parent then @parent.dom else @editor.dom
 		@render()
 	
+	# Destroy object from DOM
+	destroy: ->
+		if @dom?
+			@dom.remove()
+
 	# set coordinates in CSS
 	setCss: ->
 		@dom.css

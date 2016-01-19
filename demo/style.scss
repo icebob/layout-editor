@@ -43,3 +43,9 @@ html, body {
 	&.orange { @include object-colorize(orange); }
 	
 }
+
+.functions {
+	position: absolute;
+	bottom: 1em;
+	left: 1em;
+}

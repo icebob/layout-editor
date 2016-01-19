@@ -89,3 +89,9 @@ html, body {
   border: 1px solid orange;
   background-color: rgba(255, 165, 0, 0.5);
 }
+
+.functions {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}

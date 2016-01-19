@@ -16,6 +16,9 @@
     function Editor(c, layout1, options) {
       this.layout = layout1;
       this.options = options;
+      this.saveLayout = bind(this.saveLayout, this);
+      this.loadLayout = bind(this.loadLayout, this);
+      this.clearLayout = bind(this.clearLayout, this);
       this.onPointerUp = bind(this.onPointerUp, this);
       this.onPointerMove = bind(this.onPointerMove, this);
       this.onPointerDown = bind(this.onPointerDown, this);
@@ -172,6 +175,35 @@
           })(this));
         }
       }
+    };
+
+    Editor.prototype.clearLayout = function() {
+      var j, len, obj, ref;
+      ref = this.objects;
+      for (j = 0, len = ref.length; j < len; j++) {
+        obj = ref[j];
+        obj.destroy();
+      }
+      this.objects = [];
+      return this.selected = [];
+    };
+
+    Editor.prototype.loadLayout = function() {
+      return this.clearLayout();
+    };
+
+    Editor.prototype.saveLayout = function() {
+      var obj;
+      return (function() {
+        var j, len, ref, results;
+        ref = this.objects;
+        results = [];
+        for (j = 0, len = ref.length; j < len; j++) {
+          obj = ref[j];
+          results.push($.extend({}, obj));
+        }
+        return results;
+      }).call(this);
     };
 
     return Editor;

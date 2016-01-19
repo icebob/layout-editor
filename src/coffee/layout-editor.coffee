@@ -144,7 +144,18 @@ module.exports = class Editor
 				$.each @selected, (i, obj) => obj.stopResizing()
 
 
+	clearLayout: () =>
+		for obj in @objects
+			obj.destroy()
 
+		@objects = []
+		@selected = []
+
+	loadLayout: () =>
+		@clearLayout()
+
+
+	saveLayout: () => return ($.extend {}, obj for obj in @objects)
 
 
 # jQuery plugin registration

@@ -8,11 +8,11 @@ $ ->
 	editor.on "newObject", -> console.log "Editor event: newObject"
 
 	editor.on "startResizing", (editor, dir) -> console.log "Editor event: startResizing", editor, dir
-	editor.on "resizing", (editor, dx, dy) -> console.log "Editor event: resizing", editor, dx, dy
+	#editor.on "resizing", (editor, dx, dy) -> console.log "Editor event: resizing", editor, dx, dy
 	editor.on "stopResizing", (editor) -> console.log "Editor event: stopResizing", editor
 
 	editor.on "startMoving", (editor) -> console.log "Editor event: startMoving", editor
-	editor.on "moving", (editor, dx, dy) -> console.log "Editor event: moving", editor, dx, dy
+	#editor.on "moving", (editor, dx, dy) -> console.log "Editor event: moving", editor, dx, dy
 	editor.on "stopMoving", (editor) -> console.log "Editor event: stopMoving", editor
 
 	editor.on "select", (editor, obj) -> console.log "Editor event: select", editor, obj
@@ -31,10 +31,27 @@ $ ->
 		obj.on "unselect", (obj) -> console.log "Object event: unselect", obj
 
 		obj.on "startMoving", (obj) -> console.log "Object event: startMoving", obj
-		obj.on "applyMoving", (obj, dxp, dyp) -> console.log "Object event: applyMoving", obj, dxp, dyp
+		#obj.on "applyMoving", (obj, dxp, dyp) -> console.log "Object event: applyMoving", obj, dxp, dyp
 		obj.on "stopMoving", (obj) -> console.log "Object event: stopMoving", obj
 
 		obj.on "startResizing", (obj) -> console.log "Object event: startResizing", obj
-		obj.on "applyResizing", (obj, dxp, dyp, dir) -> console.log "Object event: applyResizing", obj, dxp, dyp, dir
+		#obj.on "applyResizing", (obj, dxp, dyp, dir) -> console.log "Object event: applyResizing", obj, dxp, dyp, dir
 		obj.on "stopResizing", (obj) -> console.log "Object event: stopResizing", obj
 
+
+	random = (min, max) -> Math.floor(Math.random() * (max - min + 1)) + min
+
+	$("button.btn-add").on "click", ->
+		colors = ["gray", "red", "green", "blue", "orange"]
+		l = random(5, 70)
+		t = random(5, 70)
+		r = 100 - l - random(10,30)
+		b = 100 - t - random(10,30)
+
+		parent = null
+		if editor.selected.length is 1
+			parent = editor.selected[0]
+
+		box = editor.createObject l, t, r, b, parent, colors[random(0, 4)]
+
+	$("button.btn-clear").on "click", -> editor.clearLayout()

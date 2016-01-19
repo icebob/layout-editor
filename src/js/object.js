@@ -28,6 +28,12 @@
       this.render();
     }
 
+    LayoutObject.prototype.destroy = function() {
+      if (this.dom != null) {
+        return this.dom.remove();
+      }
+    };
+
     LayoutObject.prototype.setCss = function() {
       return this.dom.css({
         left: this.pos.left + "%",
