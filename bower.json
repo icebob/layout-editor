@@ -1,0 +1,31 @@
+{
+  "name": "layout-editor",
+  "version": "1.0.0",
+  "homepage": "https://github.com/icebob/layout-editor",
+  "authors": [
+    "Icebob <mereg.norbert@gmail.com>"
+  ],
+  "description": "Layout editor in the browser",
+  "main": [
+    "dist/layout-editor.js",
+    "dist/layout-editor.css",
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "javascript",
+    "layout",
+    "editor"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "coverage",
+    "test_reports"
+  ]
+}
